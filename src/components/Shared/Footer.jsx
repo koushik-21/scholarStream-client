@@ -8,12 +8,14 @@ const Footer = () => {
     >
       <aside className=" ">
         <Logo></Logo>
-        <p className="font-bold italic">
+        <p className="font-semibold">
           ScholarStream Institution Ltd.
           <br />
           Providing funds & education since 2010
         </p>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+        <p className="text-xs p-0 m-0 font-semibold">
+          Copyright © {new Date().getFullYear()} - All right reserved
+        </p>
         <nav className=" m-0 p-0">
           <div className="grid grid-flow-col gap-4">
             <a

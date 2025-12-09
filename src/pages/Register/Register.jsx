@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import SocialLogin from "../../components/SocailLogin/SocialLogin";
+import Logo from "../../components/Logo/Logo";
 
 const Register = () => {
   const {
@@ -65,12 +67,18 @@ const Register = () => {
   };
 
   return (
-    <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 my-4 shadow-2xl">
-      <h3 className="text-3xl text-center py-2 px-2.5">
-        Welcome to <span className="font-semibold">ScholarStream</span>{" "}
+    <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 my-2 shadow-2xl">
+      <h3 className="text-2xl text-center py-2 ">
+        Welcome to{" "}
+        <span className="font-semibold">
+          <Logo></Logo>
+        </span>{" "}
       </h3>
-      <p className="text-center font-semibold">Please Register</p>
-      <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
+      <p className="text-center font-semibold text-gray-600">Please Register</p>
+      <form
+        className="card-body my-0 py-0"
+        onSubmit={handleSubmit(handleRegistration)}
+      >
         <fieldset className="fieldset">
           {/* name field */}
           <label className="label">Name</label>
@@ -144,8 +152,8 @@ const Register = () => {
           </div>
           <button className="btn btn-neutral mt-4">Register</button>
         </fieldset>
-        <p>
-          Already have an account{" "}
+        <p className="font-semibold">
+          Already have an account?{" "}
           <Link
             state={location.state}
             className="text-blue-400 underline"
@@ -155,7 +163,7 @@ const Register = () => {
           </Link>
         </p>
       </form>
-      {/* <SocialLogin></SocialLogin> */}
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

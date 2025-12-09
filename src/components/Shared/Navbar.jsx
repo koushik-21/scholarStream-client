@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router";
 import Logo from "../Logo/Logo";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
   const links = (
     <>
       <li>
@@ -54,7 +56,35 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">SignIn</a>
+        {!user ? (
+          <div className="flex gap-3">
+            <Link to="/login" className="btn btn-sm">
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-sm btn-neutral">
+              Register
+            </Link>
+          </div>
+        ) : (
+          <div className="dropdown dropdown-end">
+            <img
+              tabIndex={0}
+              src={user.photoURL}
+              className="w-10 h-10 rounded-full cursor-pointer"
+            />
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 bg-base-100 shadow rounded-box w-52"
+            >
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <button onClick={logOut}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
