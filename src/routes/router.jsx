@@ -2,20 +2,18 @@ import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
 import AllScholarships from "../pages/AllScholarships/AllScholarships";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-      {
-        index: true,
-        Component: Home,
-      },
-      {
-        path: "/allScholarships",
-        Component:AllScholarships
-      },
+      { index: true, Component: Home },
+      { path: "/allScholarships", Component: AllScholarships },
+      { path: "/login", Component: Login },
+      { path: "/register", Component: Register },
     ],
   },
 ]);

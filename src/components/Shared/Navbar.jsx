@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
       <li>
         <Link to="/">
-          <i class="fa-solid fa-house-chimney-user"></i> Home
+          <i className="fa-solid fa-house-chimney-user"></i> Home
         </Link>
       </li>
 
