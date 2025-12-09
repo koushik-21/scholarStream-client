@@ -66,7 +66,9 @@ const Register = () => {
 
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 my-4 shadow-2xl">
-      <h3 className="text-3xl text-center py-2">Welcome to ScholarStream</h3>
+      <h3 className="text-3xl text-center py-2 px-2.5">
+        Welcome to <span className="font-semibold">ScholarStream</span>{" "}
+      </h3>
       <p className="text-center font-semibold">Please Register</p>
       <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
         <fieldset className="fieldset">
@@ -121,15 +123,17 @@ const Register = () => {
             placeholder="Password"
           />
           {errors.password?.type === "required" && (
-            <p className="text-red-500">Password is required.</p>
+            <p className="text-red-500 font-semibold italic">
+              Password is required.
+            </p>
           )}
           {errors.password?.type === "minLength" && (
-            <p className="text-red-500">
+            <p className="text-red-500 font-semibold italic">
               Password must be 6 characters or longer
             </p>
           )}
           {errors.password?.type === "pattern" && (
-            <p className="text-red-500">
+            <p className="text-red-500 font-semibold italic">
               Password must have at least one uppercase, at least one lowercase,
               at least one number, and at least one special characters
             </p>

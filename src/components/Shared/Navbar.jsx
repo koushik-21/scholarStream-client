@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import Logo from "../Logo/Logo";
 
 const Navbar = () => {
   const links = (
@@ -45,7 +46,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">ScholarStream</a>
+        <Link to="/">
+          <Logo></Logo>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
