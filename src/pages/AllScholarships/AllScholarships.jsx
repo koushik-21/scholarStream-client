@@ -103,7 +103,10 @@ const AllScholarships = () => {
       {/* Cards */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {scholarships.map((item) => (
-          <div key={item._id} className="border rounded-xl shadow p-4 bg-white">
+          <div
+            key={item._id}
+            className="border border-gray-600 rounded-xl shadow p-4 bg-white"
+          >
             <img
               src={item.universityImage}
               className="w-full h-40 object-cover rounded"
@@ -135,9 +138,12 @@ const AllScholarships = () => {
               {item.applicationDeadline}
             </p>
 
+            {/* VIEW DETAILS BUTTON */}
             <button
               onClick={() => navigate(`/scholarship/${item._id}`)}
-              className="mt-3 w-full bg-blue-600 text-white py-2 rounded"
+              className="mt-3 w-full   py-2 rounded
+              font-extrabold tracking-wide  text-white
+              font-[Poppins] bg-gradient-to-r from-blue-600 to-cyan-400 "
             >
               View Details
             </button>
