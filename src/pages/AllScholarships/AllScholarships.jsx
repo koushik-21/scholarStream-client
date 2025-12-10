@@ -64,8 +64,8 @@ const AllScholarships = () => {
             setPage(1);
           }}
         >
-          <option value="">Filter by Category</option>
-          <option value="Full Fund">Full Fund</option>
+          <option value="">Filter by Category ⬇️</option>
+          <option value="Full Fund">Full Fund </option>
           <option value="Partial">Partial</option>
           <option value="Self-fund">Self-fund</option>
         </select>
@@ -79,7 +79,7 @@ const AllScholarships = () => {
             setPage(1);
           }}
         >
-          <option value="">Filter by Country</option>
+          <option value="">Filter by Country ⬇️</option>
           <option value="USA">USA</option>
           <option value="Canada">Canada</option>
           <option value="UK">UK</option>
@@ -93,7 +93,7 @@ const AllScholarships = () => {
           value={sort}
           onChange={(e) => setSort(e.target.value)}
         >
-          <option value="">Sort By</option>
+          <option value="">Sort By ⬇️</option>
           <option value="feesAsc">Application Fees: Low → High</option>
           <option value="feesDesc">Application Fees: High → Low</option>
           {/* <option value="newest">Newest First</option> */}

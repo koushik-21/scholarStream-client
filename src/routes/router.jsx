@@ -7,11 +7,15 @@ import Register from "../pages/Register/Register";
 import { Component } from "react";
 import ScholarShipDetails from "../pages/ScholarshipDetails/ScholarShipDetails";
 import Payment from "../pages/Payment/Payment";
+import NotFound from "../pages/404Page/NotFound";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <NotFound></NotFound>,
     children: [
       { index: true, Component: Home },
       {
@@ -38,5 +42,11 @@ export const router = createBrowserRouter([
       { path: "/login", Component: Login },
       { path: "/register", Component: Register },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    errorElement: <NotFound></NotFound>,
+    // children: [{}],
   },
 ]);
