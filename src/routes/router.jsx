@@ -10,6 +10,8 @@ import Payment from "../pages/Payment/Payment";
 import NotFound from "../pages/404Page/NotFound";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
+import UserProfile from "../pages/UserProfile/UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +49,16 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
     errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
+      },
+    ],
     // children: [{}],
   },
 ]);
