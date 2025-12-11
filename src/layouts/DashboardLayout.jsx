@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
+import Loader from "../components/Loader/Loader";
 
 const DashboardLayout = () => {
   const { user, loading } = useContext(AuthContext);
   console.log(user);
-  if (loading) return <div className="p-10 text-center">Loading...</div>;
+  if (loading) return <Loader></Loader>;
   if (!user) return <Navigate to="/login" />;
   const role = user.role; // fallback
 
@@ -42,15 +43,17 @@ const DashboardLayout = () => {
           {/* Role-based content here */}
           <div className="p-4">
             {role === "Admin" && (
-              <div className="p-4 bg-blue-100 rounded">Hello Admin</div>
+              <div className="p-4 bg-blue-100 rounded">Welcome, Admin !</div>
             )}
 
             {role === "Student" && (
-              <div className="p-4 bg-green-100 rounded">Hello Student</div>
+              <div className="p-4 bg-green-100 rounded">Welcome, Student.</div>
             )}
 
             {role === "Moderator" && (
-              <div className="p-4 bg-yellow-100 rounded">Hello Moderator</div>
+              <div className="p-4 bg-yellow-100 rounded">
+                Welcome, Moderator.
+              </div>
             )}
 
             {/* Nested routes will show here */}
@@ -62,8 +65,8 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
 
-          <div className="flex min-h-full flex-col bg-base-200 w-50 border">
-            <ul className="menu p-4 border">
+          <div className="flex min-h-full flex-col bg-base-200 w-50 ">
+            <ul className="menu p-4 ">
               {/* Home */}
               <li>
                 <Link to="/" className="flex items-center gap-2">

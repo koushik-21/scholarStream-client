@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLoaderData, useNavigate } from "react-router";
+import Loader from "../../components/Loader/Loader";
 
 const AllScholarships = () => {
   const initialData = useLoaderData();
@@ -13,21 +14,23 @@ const AllScholarships = () => {
   const [category, setCategory] = useState("");
   const [country, setCountry] = useState("");
   const [sort, setSort] = useState("");
-
+  const [loading, setLoading] = useState(false);
   // Fetch updated data when filters/search/sort/page changes
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const res = await fetch(
         `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
       );
       const data = await res.json();
       setScholarships(data.scholarships);
       setTotalPages(data.totalPages);
+      setLoading(false);
     };
 
     fetchData();
   }, [page, search, category, country, sort]);
-
+  if (loading) return <Loader />;
   return (
     <div className="px-2 md:px-4 py-8">
       {/* Header + Search */}
