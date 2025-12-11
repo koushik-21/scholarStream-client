@@ -8,7 +8,16 @@ const PrivateRoute = ({ children }) => {
 
   // still checking user (firebase)
   if (loading) {
-    return <div className="text-center py-10">Loading...</div>;
+    // return <div className="text-center py-10">Loading...</div>;
+    return (
+      <div className="text-center py-10">
+        <span className="loading loading-ball loading-xs"></span>
+        <span className="loading loading-ball loading-sm"></span>
+        <span className="loading loading-ball loading-md"></span>
+        <span className="loading loading-ball loading-lg"></span>
+        <span className="loading loading-ball loading-xl"></span>
+      </div>
+    );
   }
 
   // user not logged in

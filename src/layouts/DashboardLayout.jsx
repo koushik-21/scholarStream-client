@@ -3,8 +3,11 @@ import { Link, Outlet } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext);
-  const role = user?.role || "Student"; // fallback
+  const { user, loading } = useContext(AuthContext);
+  console.log(user);
+  if (loading) return <div className="p-10 text-center">Loading...</div>;
+  if (!user) return <Navigate to="/login" />;
+  const role = user.role; // fallback
 
   return (
     <div className="max-w-7xl mx-auto ">
@@ -33,7 +36,7 @@ const DashboardLayout = () => {
               </svg>
             </label>
 
-            <div className="px-4 font-semibold">Dashboard - {role}</div>
+            <div className="px-4 font-semibold">Dashboard - {role} </div>
           </nav>
 
           {/* Role-based content here */}
@@ -59,12 +62,18 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
 
-          <div className="flex min-h-full flex-col bg-base-200 w-64">
-            <ul className="menu p-4">
+          <div className="flex min-h-full flex-col bg-base-200 w-50 border">
+            <ul className="menu p-4 border">
               {/* Home */}
               <li>
                 <Link to="/" className="flex items-center gap-2">
-                  Home
+                  <i className="fa-solid fa-house-chimney"></i>Go back to Home
+                </Link>
+              </li>
+              {/* Dashboard */}
+              <li>
+                <Link to="/dashboard" className="flex items-center gap-2">
+                  <i className="fa-solid fa-house-chimney"></i>Dashboard
                 </Link>
               </li>
 
@@ -74,7 +83,7 @@ const DashboardLayout = () => {
                   to="/dashboard/profile"
                   className="flex items-center gap-2"
                 >
-                  Profile
+                  <i className="fa-solid fa-id-card"></i> Profile
                 </Link>
               </li>
 
@@ -85,7 +94,7 @@ const DashboardLayout = () => {
                     to="/dashboard/admin"
                     className="flex items-center gap-2"
                   >
-                    Admin Panel
+                    <i className="fa-solid fa-user-gear"></i> Admin Panel
                   </Link>
                 </li>
               )}
@@ -97,7 +106,7 @@ const DashboardLayout = () => {
                     to="/dashboard/moderator"
                     className="flex items-center gap-2"
                   >
-                    Moderator Panel
+                    <i className="fa-solid fa-user-tie"></i> Moderator Panel
                   </Link>
                 </li>
               )}
@@ -109,7 +118,8 @@ const DashboardLayout = () => {
                     to="/dashboard/student"
                     className="flex items-center gap-2"
                   >
-                    Student Dashboard
+                    <i className="fa-solid fa-user-graduate"></i> Student
+                    Dashboard
                   </Link>
                 </li>
               )}

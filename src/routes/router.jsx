@@ -12,6 +12,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
+import AdminPanel from "../pages/AdminPanel/AdminPanel";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <NotFound></NotFound>,
     children: [
       {
@@ -58,7 +63,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "admin",
+        element: (
+          <PrivateRoute>
+            <AdminPanel></AdminPanel>
+          </PrivateRoute>
+        ),
+      },
     ],
-    // children: [{}],
   },
 ]);
