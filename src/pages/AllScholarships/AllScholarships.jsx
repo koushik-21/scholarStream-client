@@ -88,6 +88,16 @@ const AllScholarships = () => {
           <option value="UK">UK</option>
           <option value="Germany">Germany</option>
           <option value="Australia">Australia</option>
+          <option value="Italy">Italy</option>
+          <option value="France">France</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Finland">Finland</option>
+          <option value="China">China</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="India">India</option>
         </select>
 
         {/* Sort */}
