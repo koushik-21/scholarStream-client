@@ -1,187 +1,5 @@
-// import React from "react";
-
-// const AddScholarShip = () => {
-//   return (
-//     <div className="border p-5 border-gray-400 rounded-xl">
-//       <form className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//         {/* Scholarship Name */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Scholarship Name</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="Scholarship Name"
-//           />
-//         </div>
-
-//         {/* University Name */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">University Name</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="University Name"
-//           />
-//         </div>
-
-//         {/* Image URL */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Image URL</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="Image URL"
-//           />
-//         </div>
-
-//         {/* Country */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Country</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="Country"
-//           />
-//         </div>
-
-//         {/* City */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">City</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="City"
-//           />
-//         </div>
-
-//         {/* World Rank */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">World Rank</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="number"
-//             placeholder="World Rank"
-//           />
-//         </div>
-
-//         {/* Subject Category */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Subject Category</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="Subject Category"
-//           />
-//         </div>
-
-//         {/* Scholarship Category */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Scholarship Category</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="Scholarship Category"
-//           />
-//         </div>
-
-//         {/* Degree */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Degree</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="text"
-//             placeholder="Degree"
-//           />
-//         </div>
-
-//         {/* Tuition Fees (optional) */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Tuition Fees (optional)</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="number"
-//             placeholder="Tuition Fees (optional)"
-//           />
-//         </div>
-
-//         {/* Application Fees */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Application Fees</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="number"
-//             placeholder="Application Fees"
-//           />
-//         </div>
-
-//         {/* Service Charge */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Service Charge</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="number"
-//             placeholder="Service Charge"
-//           />
-//         </div>
-
-//         {/* Deadline */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">Deadline</span>
-//           </label>
-//           <input type="date" className="input input-bordered w-full" />
-//         </div>
-
-//         {/* User Email */}
-//         <div>
-//           <label className="label">
-//             <span className="label-text">User Email</span>
-//           </label>
-//           <input
-//             className="input input-bordered w-full"
-//             type="email"
-//             placeholder="User Email"
-//           />
-//         </div>
-
-//         {/* Submit Button */}
-//         <div className="col-span-full">
-//           <button className="btn btn-primary w-full py-2 rounded font-extrabold tracking-wide text-white font-[Poppins] bg-gradient-to-r from-blue-500 to-cyan-400">
-//             Add Scholarship
-//           </button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default AddScholarShip;
 import React, { useState } from "react";
-import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddScholarShip = () => {
   const [formData, setFormData] = useState({
@@ -201,120 +19,225 @@ const AddScholarShip = () => {
     postedUserEmail: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
-  // Handle input change
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setMessage("");
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/allScholarships",
-        formData
-      );
-      setMessage(res.data.message);
-      setFormData({
-        scholarshipName: "",
-        universityName: "",
-        universityImage: "",
-        universityCountry: "",
-        universityCity: "",
-        universityWorldRank: "",
-        subjectCategory: "",
-        scholarshipCategory: "",
-        degree: "",
-        tuitionFees: "",
-        applicationFees: "",
-        serviceCharge: "",
-        applicationDeadline: "",
-        postedUserEmail: "",
+      const res = await fetch("http://localhost:5000/allScholarships", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        Swal.fire("Success!", "Scholarship Added Successfully", "success");
+        e.target.reset();
+      } else {
+        Swal.fire("Error", data.message || "Something went wrong", "error");
+      }
     } catch (error) {
-      setMessage(
-        error.response?.data?.message || "Something went wrong. Try again!"
-      );
-    } finally {
-      setLoading(false);
+      Swal.fire("Error", "Server Error", "error");
     }
   };
 
   return (
-    <div className="border p-5 border-gray-400 rounded-xl max-w-7xl mx-auto">
-      <h2 className="text-2xl font-bold mb-5">Add Scholarship</h2>
-      {message && (
-        <p
-          className={`mb-3 text-center font-semibold ${
-            message.includes("success") ? "text-green-600" : "text-red-600"
-          }`}
+    <div className="max-w-5xl mx-auto p-6 bg-white shadow rounded">
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        Add New Scholarship
+      </h2>
+
+      <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
+        {/* Scholarship Name */}
+        <input
+          name="scholarshipName"
+          placeholder="Scholarship Name"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+
+        {/* University Name */}
+        <input
+          name="universityName"
+          placeholder="University Name"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+
+        {/* University Image */}
+        <input
+          name="universityImage"
+          placeholder="University Image URL"
+          className="input input-bordered"
+          onChange={handleChange}
+        />
+
+        {/* Country (Searchable + Any Country) */}
+        <input
+          list="countryList"
+          name="universityCountry"
+          placeholder="Type or Select Country"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+        <datalist id="countryList">
+          <option value="USA" />
+          <option value="Canada" />
+          <option value="UK" />
+          <option value="Germany" />
+          <option value="Australia" />
+          <option value="Italy" />
+          <option value="France" />
+          <option value="Netherlands" />
+          <option value="Sweden" />
+          <option value="Finland" />
+          <option value="Japan" />
+          <option value="China" />
+          <option value="Malaysia" />
+          <option value="Singapore" />
+          <option value="Bangladesh" />
+          <option value="India" />
+        </datalist>
+
+        {/* City */}
+        <input
+          name="universityCity"
+          placeholder="City"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+
+        {/* World Rank */}
+        {/* <input
+          name="worldRank"
+          type="number"
+          placeholder="World Rank"
+          className="input input-bordered"
+          onChange={handleChange}
+        /> */}
+
+        <div>
+          <input
+            type="number"
+            name="universityWorldRank"
+            placeholder="World Rank"
+            className="input input-bordered"
+            required
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Subject Category */}
+        <select
+          name="subjectCategory"
+          className="select select-bordered"
+          onChange={handleChange}
+          required
         >
-          {message}
-        </p>
-      )}
-      <form
-        className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        onSubmit={handleSubmit}
-      >
-        {[
-          { name: "scholarshipName", label: "Scholarship Name", type: "text" },
-          { name: "universityName", label: "University Name", type: "text" },
-          { name: "universityImage", label: "Image URL", type: "text" },
-          { name: "universityCountry", label: "Country", type: "text" },
-          { name: "universityCity", label: "City", type: "text" },
-          { name: "universityWorldRank", label: "World Rank", type: "number" },
-          { name: "subjectCategory", label: "Subject Category", type: "text" },
-          {
-            name: "scholarshipCategory",
-            label: "Scholarship Category",
-            type: "text",
-          },
-          { name: "degree", label: "Degree", type: "text" },
-          {
-            name: "tuitionFees",
-            label: "Tuition Fees (optional)",
-            type: "number",
-          },
-          {
-            name: "applicationFees",
-            label: "Application Fees",
-            type: "number",
-          },
-          { name: "serviceCharge", label: "Service Charge", type: "number" },
-          { name: "applicationDeadline", label: "Deadline", type: "date" },
-          { name: "postedUserEmail", label: "User Email", type: "email" },
-        ].map((field) => (
-          <div key={field.name}>
-            <label className="label">
-              <span className="label-text">{field.label}</span>
-            </label>
-            <input
-              type={field.type}
-              name={field.name}
-              value={formData[field.name]}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-              placeholder={field.label}
-            />
-          </div>
-        ))}
+          <option value="">Select Subject Category</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Business">Business</option>
+          <option value="Medical">Medical</option>
+          <option value="Science">Science</option>
+          <option value="Arts">Arts</option>
+        </select>
+
+        {/* Scholarship Category (FILTER COMPATIBLE) */}
+        <select
+          name="scholarshipCategory"
+          className="select select-bordered"
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Scholarship Category</option>
+          <option value="Full Fund">Full Fund</option>
+          <option value="Partial">Partial</option>
+          <option value="Self-fund">Self-fund</option>
+        </select>
+
+        {/* Degree (SEARCH COMPATIBLE) */}
+        <select
+          name="degree"
+          className="select select-bordered"
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Degree</option>
+          <option value="Bachelor">Bachelor</option>
+          <option value="Master">Master</option>
+          <option value="PhD">PhD</option>
+        </select>
+
+        {/* Tuition Fees */}
+        <input
+          name="tuitionFees"
+          type="number"
+          placeholder="Tuition Fees (Optional)"
+          className="input input-bordered"
+          onChange={handleChange}
+        />
+
+        {/* Application Fees (SORT COMPATIBLE) */}
+        <input
+          name="applicationFees"
+          type="number"
+          placeholder="Application Fees"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+
+        {/* Service Charge */}
+        <input
+          name="serviceCharge"
+          type="number"
+          placeholder="Service Charge"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+
+        {/* Deadline */}
+        <input
+          name="applicationDeadline"
+          type="date"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
+
+        {/* User Email */}
+        <input
+          name="postedUserEmail"
+          type="email"
+          placeholder="User Email"
+          className="input input-bordered"
+          onChange={handleChange}
+          required
+        />
 
         {/* Submit Button */}
-        <div className="col-span-full">
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn btn-primary w-full py-2 rounded font-extrabold tracking-wide text-white font-[Poppins] bg-gradient-to-r from-blue-500 to-cyan-400"
-          >
-            {loading ? "Submitting..." : "Add Scholarship"}
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="md:col-span-2 mt-4 py-3 rounded text-white font-bold
+          bg-gradient-to-r from-blue-600 to-cyan-400"
+        >
+          Add Scholarship
+        </button>
       </form>
     </div>
   );
