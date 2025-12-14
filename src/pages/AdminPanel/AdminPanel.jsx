@@ -1,11 +1,12 @@
 import React from "react";
 import AddScholarShip from "./AddScholarShip";
+import ManageScholarShip from "./ManageScholarShip";
 
 const AdminPanel = () => {
   return (
     <div>
       <p className="font-semibold text-xl py-2">
-        <i class="fa-solid fa-mobile"></i> This is your AdminPanel
+        <i className="fa-solid fa-mobile"></i> This is your AdminPanel
       </p>
       <div className="tabs tabs-lift w-full">
         {/* TAB 1 — Add Scholarship */}
@@ -105,9 +106,9 @@ const AdminPanel = () => {
           aria-label="Manage Scholarships"
         />
         <div className="tab-content bg-base-100 border-base-300 p-6">
-          <h2 className="text-xl font-bold mb-4">Manage Scholarships</h2>
-
-          <div className="overflow-x-auto">
+          {/* <h2 className="text-xl font-bold mb-4">Manage Scholarships</h2> */}
+          <ManageScholarShip></ManageScholarShip>
+          {/* <div className="overflow-x-auto">
             <table className="table">
               <thead>
                 <tr>
@@ -119,7 +120,7 @@ const AdminPanel = () => {
               </thead>
               <tbody>
                 {/* Example row */}
-                <tr>
+          {/* <tr>
                   <td>Example Scholarship</td>
                   <td>MIT</td>
                   <td>USA</td>
@@ -130,7 +131,7 @@ const AdminPanel = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> */}{" "}
         </div>
 
         {/* TAB 3 — Manage Users */}
@@ -144,7 +145,7 @@ const AdminPanel = () => {
           <h2 className="text-xl font-bold mb-4">Manage Users</h2>
 
           {/* Filter Dropdown */}
-          <select className="select select-bordered mb-4">
+          {/* <select className="select select-bordered mb-4">
             <option value="">All Roles</option>
             <option value="Student">Student</option>
             <option value="Moderator">Moderator</option>
@@ -164,7 +165,7 @@ const AdminPanel = () => {
 
               <tbody>
                 {/* Example Row */}
-                <tr>
+          {/* <tr>
                   <td>user@gmail.com</td>
                   <td>Student</td>
                   <td>
@@ -175,8 +176,8 @@ const AdminPanel = () => {
                   </td>
                 </tr>
               </tbody>
-            </table>
-          </div>
+            </table> */}
+          {/* </div> */}
         </div>
 
         {/* TAB 4 — Analytics */}
