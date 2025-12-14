@@ -8,13 +8,21 @@ const ManageScholarShip = () => {
 
   // 🔁 Fetch all scholarships (NO LIMIT)
   const fetchScholarships = async () => {
-    const res = await fetch("http://localhost:5000/admin/allScholarships");
-    const data = await res.json();
-    setScholarships(data);
+    try {
+      const res = await fetch("http://localhost:5000/admin/allScholarships");
+      if (!res.ok) throw new Error("Failed to fetch scholarships");
+      const data = await res.json();
+      setScholarships(data);
+    } catch (error) {
+      console.error("Error fetching scholarships:", error);
+    }
   };
 
   useEffect(() => {
-    fetchScholarships();
+    const fetchData = async () => {
+      await fetchScholarships();
+    };
+    fetchData();
   }, []);
 
   // 🗑️ DELETE
@@ -49,10 +57,6 @@ const ManageScholarShip = () => {
   };
 
   // ✍️ INPUT CHANGE
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     setFormData({
@@ -60,25 +64,32 @@ const ManageScholarShip = () => {
       [name]: type === "number" ? Number(value) : value,
     });
   };
+
   // ✅ UPDATE SUBMIT
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(
-      `http://localhost:5000/allScholarships/${selectedScholarship._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
+    try {
+      const res = await fetch(
+        `http://localhost:5000/allScholarships/${selectedScholarship._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    if (res.ok) {
-      Swal.fire("Updated!", "Scholarship updated successfully", "success");
-      closeModal();
-      fetchScholarships();
+      if (res.ok) {
+        Swal.fire("Updated!", "Scholarship updated successfully", "success");
+        closeModal();
+        fetchScholarships();
+      } else {
+        const errorData = await res.json();
+        Swal.fire("Error", errorData.message || "Update failed", "error");
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+      Swal.fire("Error", "Something went wrong", "error");
     }
   };
 
