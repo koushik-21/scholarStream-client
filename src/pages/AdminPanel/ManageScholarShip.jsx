@@ -6,7 +6,7 @@ const ManageScholarShip = () => {
   const [selectedScholarship, setSelectedScholarship] = useState(null);
   const [formData, setFormData] = useState({});
 
-  // 🔁 Fetch all scholarships (NO LIMIT)
+  //  Fetch all scholarships (NO LIMIT)
   const fetchScholarships = async () => {
     try {
       const res = await fetch("http://localhost:5000/admin/allScholarships");
@@ -25,7 +25,7 @@ const ManageScholarShip = () => {
     fetchData();
   }, []);
 
-  // 🗑️ DELETE
+  //  DELETE
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
@@ -45,13 +45,13 @@ const ManageScholarShip = () => {
     }
   };
 
-  // ✏️ OPEN UPDATE MODAL
+  //  OPEN UPDATE MODAL
   const openUpdateModal = (scholarship) => {
     setSelectedScholarship(scholarship);
     setFormData(scholarship);
   };
 
-  // ❌ CLOSE MODAL
+  //  CLOSE MODAL
   const closeModal = () => {
     setSelectedScholarship(null);
   };
@@ -65,7 +65,7 @@ const ManageScholarShip = () => {
     });
   };
 
-  // ✅ UPDATE SUBMIT
+  //  UPDATE SUBMIT
   const handleUpdate = async (e) => {
     e.preventDefault();
 
