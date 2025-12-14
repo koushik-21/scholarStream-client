@@ -13,6 +13,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import UserProfile from "../pages/UserProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import AdminPanel from "../pages/AdminPanel/AdminPanel";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentFailed from "../pages/Payment/PaymentFailed";
 
 export const router = createBrowserRouter([
   {
@@ -25,12 +27,23 @@ export const router = createBrowserRouter([
         path: "/allScholarships",
         loader: async ({ request }) => {
           const url = new URL(request.url);
-          const page = url.searchParams.get("page") || 1;
-          const category = url.searchParams.get("category") || "";
-          const apiUrl = `http://localhost:5000/allScholarships?page=${page}
-          &category=${encodeURIComponent(category)}`;
 
-          return fetch(apiUrl);
+          const page = url.searchParams.get("page") || 1;
+          const search = url.searchParams.get("search") || "";
+          const category = url.searchParams.get("category") || "";
+          const country = url.searchParams.get("country") || "";
+          const sort = url.searchParams.get("sort") || "";
+
+          const apiUrl = `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`;
+
+          const res = await fetch(apiUrl);
+          if (!res.ok) {
+            throw new Response("Failed to fetch scholarships", {
+              status: res.status,
+            });
+          }
+
+          return res.json();
         },
         Component: AllScholarships,
       },
@@ -42,6 +55,8 @@ export const router = createBrowserRouter([
         Component: ScholarShipDetails,
       },
       { path: "/payment", Component: Payment },
+      { path: "/payment-success", Component: PaymentSuccess },
+      { path: "/payment-failed", Component: PaymentFailed },
       { path: "/login", Component: Login },
       { path: "/register", Component: Register },
     ],

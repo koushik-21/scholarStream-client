@@ -57,6 +57,7 @@ const ScholarShipDetails = () => {
       <div className=" flex justify-center">
         <Link
           className="border bg-gray-200 btn m-2 font-semibold"
+          state={{ scholarship: data }}
           to="/payment"
         >
           Apply for Scholarship
@@ -65,8 +66,8 @@ const ScholarShipDetails = () => {
       {/* review-section */}
       <div className="border border-gray-500 rounded-2xl mt-5 p-4 md:p-4">
         <p className="text-2xl text-center py-2">
-          <i class="fa-regular fa-star"></i> Reviews{" "}
-          <i class="fa-regular fa-star"></i>
+          <i className="fa-regular fa-star"></i> Reviews{" "}
+          <i className="fa-regular fa-star"></i>
         </p>
         <p className="text-center font-semibold py-2">No reviews to show.</p>
       </div>

@@ -16,16 +16,38 @@ const AllScholarships = () => {
   const [sort, setSort] = useState("");
   const [loading, setLoading] = useState(false);
   // Fetch updated data when filters/search/sort/page changes
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     const res = await fetch(
+  //       `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
+  //     );
+  //     const data = await res.json();
+  //     setScholarships(data.scholarships);
+  //     setTotalPages(data.totalPages);
+  //     setLoading(false);
+  //   };
+
+  //   fetchData();
+  // }, [page, search, category, country, sort]);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const res = await fetch(
-        `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
-      );
-      const data = await res.json();
-      setScholarships(data.scholarships);
-      setTotalPages(data.totalPages);
-      setLoading(false);
+      try {
+        const res = await fetch(
+          `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
+        );
+
+        if (!res.ok) throw new Error("Failed to fetch data");
+
+        const data = await res.json();
+        setScholarships(data.scholarships);
+        setTotalPages(data.totalPages);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();

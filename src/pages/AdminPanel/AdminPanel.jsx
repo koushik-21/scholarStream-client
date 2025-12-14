@@ -2,6 +2,7 @@ import React from "react";
 import AddScholarShip from "./AddScholarShip";
 import ManageScholarShip from "./ManageScholarShip";
 import ManageUsers from "./ManageUsers";
+import Analytics from "./Analytics";
 
 const AdminPanel = () => {
   return (
@@ -52,31 +53,9 @@ const AdminPanel = () => {
           className="tab"
           aria-label="Analytics"
         />
+        <Analytics></Analytics>
         <div className="tab-content bg-base-100 border-base-300 p-6 space-y-4">
-          <h2 className="text-xl font-bold">Analytics</h2>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="stat bg-base-200">
-              <div className="stat-title">Total Users</div>
-              <div className="stat-value">123</div>
-            </div>
-
-            <div className="stat bg-base-200">
-              <div className="stat-title">Total Scholarships</div>
-              <div className="stat-value">45</div>
-            </div>
-
-            <div className="stat bg-base-200">
-              <div className="stat-title">Total Fees Collected</div>
-              <div className="stat-value">$12,480</div>
-            </div>
-          </div>
-
-          {/* Chart Placeholder */}
-          <div className="border rounded-lg p-6 text-center">
-            <p className="text-gray-500">📊 Chart will be displayed here</p>
-          </div>
+          {/* <h2 className="text-xl font-bold">Analytics</h2> */}
         </div>
       </div>
     </div>
