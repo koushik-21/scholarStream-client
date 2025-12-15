@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminPanel from "../pages/AdminPanel/AdminPanel";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentFailed from "../pages/Payment/PaymentFailed";
+import StudentPanel from "../pages/StudentPanel/StudentPanel";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminPanel></AdminPanel>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "student",
+        element: (
+          <PrivateRoute>
+            <StudentPanel></StudentPanel>
           </PrivateRoute>
         ),
       },

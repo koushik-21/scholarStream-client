@@ -2,113 +2,50 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 
 const PaymentSuccess = () => {
-  const [searchParams] = useSearchParams();
-  const [paymentInfo, setPaymentInfo] = useState(null);
+  const [params] = useSearchParams();
+  const sessionId = params.get("session_id");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  const sessionId = searchParams.get("session_id");
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    if (!sessionId) {
-      setError("Invalid payment session.");
-      setLoading(false);
-      return;
-    }
-
-    const fetchPayment = async () => {
+    const verify = async () => {
       try {
         const res = await fetch(
           `http://localhost:5000/scholarship-payment-success?session_id=${sessionId}`,
-          {
-            method: "PATCH", // backend যেভাবে বানানো আছে
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
+          { method: "PATCH" }
         );
-
         const data = await res.json();
-
-        if (!res.ok || !data?.success) {
-          throw new Error("Payment verification failed");
-        }
-
-        setPaymentInfo(data);
-      } catch (err) {
-        console.error(err);
-        setError("We could not verify your payment.");
+        setSuccess(data.success);
+      } catch {
+        setSuccess(false);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPayment();
+    if (sessionId) verify();
   }, [sessionId]);
 
-  // ⏳ Loading
-  if (loading) {
+  if (loading) return <p className="text-center mt-20">Verifying payment...</p>;
+
+  if (!success)
     return (
-      <div className="min-h-screen flex items-center justify-center bg-green-50">
-        <p className="text-green-600 text-xl font-semibold animate-pulse">
-          Verifying payment...
-        </p>
-      </div>
-    );
-  }
-
-  // ❌ Error / Failed
-  if (error || !paymentInfo) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-red-50 p-4">
-        <div className="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">
-            Payment Failed
-          </h1>
-          <p className="text-gray-700 mb-6">
-            {error || "Something went wrong. Please try again."}
-          </p>
-          <Link
-            to="/payment"
-            className="text-blue-600 font-semibold hover:underline"
-          >
-            Retry Payment
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  // ✅ Success
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
-      <div className="bg-white shadow-xl rounded-2xl p-8 text-center max-w-md w-full">
-        <h1 className="text-3xl font-bold text-green-600 mb-4">
-          🎉 Payment Successful!
-        </h1>
-
-        <p className="text-gray-700 mb-2">
-          Amount Paid:{" "}
-          <span className="font-semibold text-green-700">
-            ${paymentInfo.amount}
-          </span>
-        </p>
-
-        <p className="text-gray-700 mb-6">
-          Transaction ID:
-          <br />
-          <span className="font-mono text-sm text-gray-500 break-all">
-            {paymentInfo.transactionId}
-          </span>
-        </p>
-
-        <Link
-          to="/dashboard"
-          className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
-        >
-          Go to Dashboard
+      <div className="text-center m-30 border border-gray-300 p-10">
+        <h2 className="text-red-600 text-2xl font-bold mb-3">Payment Failed</h2>
+        <Link to="/dashboard" className="text-blue-600 underline">
+          Return to Dashboard
         </Link>
       </div>
+    );
+
+  return (
+    <div className="text-center m-30 border border-gray-300 p-10">
+      <h2 className="text-green-600 text-3xl font-bold mb-3">
+        Payment Successful 🎉
+      </h2>
+      <Link to="/dashboard" className="text-blue-600 underline">
+        Go to Dashboard
+      </Link>
     </div>
   );
 };

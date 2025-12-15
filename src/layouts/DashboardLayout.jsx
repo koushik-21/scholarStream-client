@@ -5,7 +5,7 @@ import Loader from "../components/Loader/Loader";
 
 const DashboardLayout = () => {
   const { user, loading } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   if (loading) return <Loader></Loader>;
   if (!user) return <Navigate to="/login" />;
   const role = user.role; // fallback
