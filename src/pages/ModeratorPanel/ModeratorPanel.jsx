@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ManageApplications from "./ManageApplications";
-import AllReviews from "./AllReviews";
+// import AllReviews from "./AllReviews";
+import ModeratorReviewPanel from "./ModeratorReviewPanel";
 
 const ModeratorPanel = () => {
   const [activeTab, setActiveTab] = useState("applications");
@@ -22,14 +23,16 @@ const ModeratorPanel = () => {
           className={`tab ${activeTab === "reviews" ? "tab-active" : ""}`}
           onClick={() => setActiveTab("reviews")}
         >
-          All Reviews
+          All Student Reviews
         </button>
       </div>
 
       {/* Tab Content */}
       <div className=" rounded-xl p-4">
         {activeTab === "applications" && <ManageApplications />}
-        {activeTab === "reviews" && <AllReviews />}
+        {activeTab === "reviews" && (
+          <ModeratorReviewPanel></ModeratorReviewPanel>
+        )}
       </div>
     </div>
   );
