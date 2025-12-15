@@ -18,53 +18,6 @@ const Register = () => {
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
-  // const handleRegistration = (data) => {
-  //   const profileImg = data.photo[0];
-
-  //   registerUser(data.email, data.password)
-  //     .then(() => {
-  //       // 1. store the image in form data
-  //       const formData = new FormData();
-  //       formData.append("image", profileImg);
-
-  //       // 2. send the photo to store and get the ul
-  //       const image_API_URL = `https://api.imgbb.com/1/upload?key=${
-  //         import.meta.env.VITE_IMGBB_KEY
-  //       }`;
-
-  //       axios.post(image_API_URL, formData).then((res) => {
-  //         const photoURL = res.data.data.url;
-
-  //         // create user in the database
-  //         const userInfo = {
-  //           email: data.email,
-  //           displayName: data.name,
-  //           photoURL: photoURL,
-  //         };
-  //         axiosSecure.post("/users", userInfo).then((res) => {
-  //           if (res.data.insertedId) {
-  //             console.log("user created in the database");
-  //           }
-  //         });
-
-  //         // update user profile to firebase
-  //         const userProfile = {
-  //           displayName: data.name,
-  //           photoURL: photoURL,
-  //         };
-
-  //         updateUserProfile(userProfile)
-  //           .then(() => {
-  //             // console.log('user profile updated done.')
-  //             navigate(location.state || "/");
-  //           })
-  //           .catch((error) => console.log(error));
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
   const handleRegistration = (data) => {
     const profileImg = data.photo[0];
 
@@ -97,23 +50,6 @@ const Register = () => {
             photoURL: photoURL,
           };
 
-          // updateUserProfile(userProfile)
-          //   .then(() => {
-          //     // 🔥 SUCCESS SWEET ALERT
-          //     Swal.fire({
-          //       title: "Registration Successful!",
-          //       text: "Your account has been created.",
-          //       icon: "success",
-          //       timer: 2000,
-          //       showConfirmButton: false,
-          //     });
-
-          //     // 🔥 CONDITIONAL REDIRECT:
-          //     // যদি অন্য পেজ থেকে রিডাইরেক্ট হয়ে register এ আসা হয় → সেই পেজে ফিরে যাও
-          //     // না হলে → home এ যাও
-          //     navigate(location.state ? location.state : "/");
-          //   })
-          //   .catch((error) => console.log(error));
           updateUserProfile(userProfile)
             .then(() => {
               Swal.fire({

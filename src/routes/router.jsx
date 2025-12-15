@@ -16,6 +16,7 @@ import AdminPanel from "../pages/AdminPanel/AdminPanel";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentFailed from "../pages/Payment/PaymentFailed";
 import StudentPanel from "../pages/StudentPanel/StudentPanel";
+import ModeratorPanel from "../pages/ModeratorPanel/ModeratorPanel";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +100,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <StudentPanel></StudentPanel>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "moderator",
+        element: (
+          <PrivateRoute>
+            <ModeratorPanel></ModeratorPanel>
           </PrivateRoute>
         ),
       },

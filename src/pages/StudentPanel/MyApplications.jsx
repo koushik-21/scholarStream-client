@@ -7,7 +7,10 @@ const MyApplications = () => {
   const [loading, setLoading] = useState(true);
   const [selectedApp, setSelectedApp] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
-
+  // REVIEW MODAL STATE
+  const [reviewApp, setReviewApp] = useState(null);
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
   useEffect(() => {
     if (!user?.email) return;
     const fetchApplications = async () => {
@@ -29,6 +32,31 @@ const MyApplications = () => {
   const openDetails = (app) => {
     setSelectedApp(app);
     setShowDetailsModal(true);
+  };
+  // 🔥 SUBMIT REVIEW
+  const submitReview = async () => {
+    try {
+      await fetch("http://localhost:5000/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          scholarshipId: reviewApp.scholarshipId,
+          applicationId: reviewApp._id,
+          userEmail: user.email,
+          userName: user.displayName || "Anonymous",
+          rating,
+          comment,
+        }),
+      });
+
+      setReviewApp(null);
+      setRating(5);
+      setComment("");
+      alert("Review submitted successfully");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit review");
+    }
   };
 
   const handlePay = async (app) => {
@@ -124,6 +152,15 @@ const MyApplications = () => {
                       )}
                     </>
                   )}
+                  {/* ✅ ADD REVIEW */}
+                  {app.applicationStatus === "completed" && (
+                    <button
+                      className="bg-green-600 text-white  p-1 my-1 rounded"
+                      onClick={() => setReviewApp(app)}
+                    >
+                      Add Review
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -163,6 +200,51 @@ const MyApplications = () => {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+      {/* ⭐ REVIEW MODAL */}
+      {reviewApp && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl w-[420px]">
+            <h4 className="text-lg font-bold mb-3">Add Review</h4>
+
+            {/* RATING */}
+            <label className="block mb-1 font-medium">Rating</label>
+            <select
+              className="w-full border rounded p-2 mb-3"
+              value={rating}
+              onChange={(e) => setRating(Number(e.target.value))}
+            >
+              {[5, 4, 3, 2, 1].map((r) => (
+                <option key={r} value={r}>
+                  {r} Star
+                </option>
+              ))}
+            </select>
+
+            {/* COMMENT */}
+            <label className="block mb-1 font-medium">Comment</label>
+            <textarea
+              className="w-full border rounded p-2 min-h-[120px]"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                className="bg-green-600 text-white  p-2 rounded"
+                onClick={submitReview}
+              >
+                Submit
+              </button>
+              <button
+                className="bg-gray-500 text-white  p-2 rounded"
+                onClick={() => setReviewApp(null)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
