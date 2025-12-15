@@ -97,21 +97,39 @@ const Register = () => {
             photoURL: photoURL,
           };
 
+          // updateUserProfile(userProfile)
+          //   .then(() => {
+          //     // 🔥 SUCCESS SWEET ALERT
+          //     Swal.fire({
+          //       title: "Registration Successful!",
+          //       text: "Your account has been created.",
+          //       icon: "success",
+          //       timer: 2000,
+          //       showConfirmButton: false,
+          //     });
+
+          //     // 🔥 CONDITIONAL REDIRECT:
+          //     // যদি অন্য পেজ থেকে রিডাইরেক্ট হয়ে register এ আসা হয় → সেই পেজে ফিরে যাও
+          //     // না হলে → home এ যাও
+          //     navigate(location.state ? location.state : "/");
+          //   })
+          //   .catch((error) => console.log(error));
           updateUserProfile(userProfile)
             .then(() => {
-              // 🔥 SUCCESS SWEET ALERT
               Swal.fire({
                 title: "Registration Successful!",
                 text: "Your account has been created.",
                 icon: "success",
-                timer: 2000,
+                timer: 1500,
                 showConfirmButton: false,
               });
 
-              // 🔥 CONDITIONAL REDIRECT:
-              // যদি অন্য পেজ থেকে রিডাইরেক্ট হয়ে register এ আসা হয় → সেই পেজে ফিরে যাও
-              // না হলে → home এ যাও
-              navigate(location.state ? location.state : "/");
+              // 🔥 Go to home + reload website
+              navigate("/", { replace: true });
+
+              setTimeout(() => {
+                window.location.reload();
+              }, 1600); // alert শেষ হওয়ার পর reload
             })
             .catch((error) => console.log(error));
         });
