@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MyApplications from "./MyApplications";
+import MyReviews from "./MyReviews";
 
 const StudentPanel = () => {
   const [activeTab, setActiveTab] = useState("applications");
@@ -43,7 +44,8 @@ const StudentPanel = () => {
 
         {activeTab === "reviews" && (
           <div>
-            <p className="text-gray-700">Your reviews will show here.</p>
+            {/* <p className="text-gray-700">Your reviews will show here.</p> */}
+            <MyReviews></MyReviews>
           </div>
         )}
       </div>

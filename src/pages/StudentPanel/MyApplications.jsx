@@ -33,7 +33,7 @@ const MyApplications = () => {
     setSelectedApp(app);
     setShowDetailsModal(true);
   };
-  // 🔥 SUBMIT REVIEW
+  //  SUBMIT REVIEW
   const submitReview = async () => {
     try {
       await fetch("http://localhost:5000/reviews", {
@@ -48,7 +48,14 @@ const MyApplications = () => {
           comment,
         }),
       });
-
+      console.log(
+        reviewApp.scholarshipId,
+        reviewApp._id,
+        user.email,
+        user.displayName,
+        rating,
+        comment
+      );
       setReviewApp(null);
       setRating(5);
       setComment("");

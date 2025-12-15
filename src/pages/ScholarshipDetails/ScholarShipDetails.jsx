@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router";
+import ScholarShipReview from "./ScholarShipReview";
 
 const ScholarShipDetails = () => {
   const data = useLoaderData();
@@ -69,7 +70,7 @@ const ScholarShipDetails = () => {
           <i className="fa-regular fa-star"></i> Reviews{" "}
           <i className="fa-regular fa-star"></i>
         </p>
-        <p className="text-center font-semibold py-2">No reviews to show.</p>
+        <ScholarShipReview scholarshipId={data._id} />
       </div>
     </div>
   );
