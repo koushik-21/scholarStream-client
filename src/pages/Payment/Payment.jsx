@@ -33,7 +33,8 @@ const Payment = () => {
         scholarshipId: scholarship._id,
         scholarshipName: scholarship.scholarshipName,
         userId: user.uid,
-        userEmail: user.email, // ✅ send valid email
+        userEmail: user.email, //  send valid email
+        userName: user.displayName || user.name || "Unknown",
         applicationFees: Number(scholarship.applicationFees),
       };
 
@@ -63,7 +64,7 @@ const Payment = () => {
   };
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
+    <div className="p-10 max-w-2xl mx-auto border rounded-2xl border-gray-400 my-20">
       <h1 className="text-2xl font-bold mb-4">{scholarship.scholarshipName}</h1>
       <p>
         <strong>University:</strong> {scholarship.universityName}

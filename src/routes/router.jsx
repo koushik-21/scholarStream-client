@@ -54,7 +54,14 @@ export const router = createBrowserRouter([
         },
         Component: ScholarShipDetails,
       },
-      { path: "/payment", Component: Payment },
+      {
+        path: "/payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
       { path: "/payment-success", Component: PaymentSuccess },
       { path: "/payment-failed", Component: PaymentFailed },
       { path: "/login", Component: Login },
