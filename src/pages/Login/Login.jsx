@@ -18,7 +18,7 @@ const Login = () => {
     // console.log("form data", data);
     signInUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         // 🔥 SUCCESS ALERT
         Swal.fire({
           title: "Login Successful!",

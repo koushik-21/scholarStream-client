@@ -20,7 +20,9 @@ const Analytics = () => {
 
   // 🔁 Fetch overall stats
   const fetchStats = async () => {
-    const res = await fetch("http://localhost:5000/admin/analytics/stats");
+    const res = await fetch(
+      "https://scholar-stream-server-mu.vercel.app/admin/analytics/stats"
+    );
     const data = await res.json();
     setStats(data);
   };
@@ -28,7 +30,7 @@ const Analytics = () => {
   // 📊 Fetch chart data (Applications per Category)
   const fetchChartData = async () => {
     const res = await fetch(
-      "http://localhost:5000/admin/analytics/applications-by-category"
+      "https://scholar-stream-server-mu.vercel.app/admin/analytics/applications-by-category"
     );
     const data = await res.json();
     setChartData(data);

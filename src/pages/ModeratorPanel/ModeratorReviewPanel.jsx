@@ -7,7 +7,9 @@ const ModeratorReviewPanel = () => {
   // Fetch all reviews
   const fetchReviews = async () => {
     try {
-      const res = await fetch("http://localhost:5000/all-reviews");
+      const res = await fetch(
+        "https://scholar-stream-server-mu.vercel.app/all-reviews"
+      );
       const data = await res.json();
       setReviews(data);
     } catch (err) {
@@ -26,9 +28,12 @@ const ModeratorReviewPanel = () => {
   const handleDelete = async (reviewId) => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/reviews/${reviewId}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://scholar-stream-server-mu.vercel.app/reviews/${reviewId}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (res.ok) {
         setReviews(reviews.filter((r) => r._id !== reviewId));
         alert("Review deleted successfully");

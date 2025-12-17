@@ -20,7 +20,7 @@ const AllScholarships = () => {
   //   const fetchData = async () => {
   //     setLoading(true);
   //     const res = await fetch(
-  //       `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
+  //       `https://scholar-stream-server-mu.vercel.app/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
   //     );
   //     const data = await res.json();
   //     setScholarships(data.scholarships);
@@ -35,7 +35,7 @@ const AllScholarships = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
+          `https://scholar-stream-server-mu.vercel.app/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`
         );
 
         if (!res.ok) throw new Error("Failed to fetch data");

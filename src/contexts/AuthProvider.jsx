@@ -51,7 +51,7 @@
 //       if (currentUser?.email) {
 //         // fetch role from MongoDB
 //         const res = await axios.get(
-//           `http://localhost:5000/users?email=${currentUser.email}`
+//           `https://scholar-stream-server-mu.vercel.app/users?email=${currentUser.email}`
 //         );
 //         setDbUser(res.data);
 //       } else {
@@ -142,7 +142,7 @@ const AuthProvider = ({ children }) => {
         // Fetch role from DB
         try {
           const res = await fetch(
-            `http://localhost:5000/users/${currentUser.email}`
+            `https://scholar-stream-server-mu.vercel.app/users/${currentUser.email}`
           );
           const dbUser = await res.json();
 

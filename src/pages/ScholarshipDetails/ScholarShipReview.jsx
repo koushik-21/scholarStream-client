@@ -10,7 +10,7 @@ const ScholarShipReview = ({ scholarshipId }) => {
     const fetchReviews = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/reviews-by-scholarship/${scholarshipId}`
+          `https://scholar-stream-server-mu.vercel.app/reviews-by-scholarship/${scholarshipId}`
         );
         const result = await res.json();
         setReviews(result);

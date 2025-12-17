@@ -11,7 +11,7 @@ const PaymentSuccess = () => {
     const verify = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/scholarship-payment-success?session_id=${sessionId}`,
+          `https://scholar-stream-server-mu.vercel.app/scholarship-payment-success?session_id=${sessionId}`,
           { method: "PATCH" }
         );
         const data = await res.json();

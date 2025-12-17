@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
           const country = url.searchParams.get("country") || "";
           const sort = url.searchParams.get("sort") || "";
 
-          const apiUrl = `http://localhost:5000/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`;
+          const apiUrl = `https://scholar-stream-server-mu.vercel.app/allScholarships?page=${page}&search=${search}&category=${category}&country=${country}&sort=${sort}`;
 
           const res = await fetch(apiUrl);
           if (!res.ok) {
@@ -52,7 +52,9 @@ export const router = createBrowserRouter([
       {
         path: "/scholarship/:id",
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/allScholarships/${params.id}`);
+          return fetch(
+            `https://scholar-stream-server-mu.vercel.app/allScholarships/${params.id}`
+          );
         },
         Component: ScholarShipDetails,
       },

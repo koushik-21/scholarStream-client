@@ -12,7 +12,7 @@ const SocialLogin = () => {
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         // create user in the database
         const userInfo = {
@@ -22,8 +22,9 @@ const SocialLogin = () => {
         };
 
         axiosSecure.post("/users", userInfo).then((res) => {
-          console.log("user data has been stored", res.data);
-          navigate(location.state || "/");
+          // console.log("user data has been stored", res.data);
+          // navigate(location.state || "/");
+          window.location.href = location.state || "/";
         });
       })
       .catch((error) => {

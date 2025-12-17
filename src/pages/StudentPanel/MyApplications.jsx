@@ -16,7 +16,7 @@ const MyApplications = () => {
     const fetchApplications = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/applications?email=${user.email}`
+          `https://scholar-stream-server-mu.vercel.app/applications?email=${user.email}`
         );
         const data = await res.json();
         setApplications(data);
@@ -36,7 +36,7 @@ const MyApplications = () => {
   //  SUBMIT REVIEW
   const submitReview = async () => {
     try {
-      await fetch("http://localhost:5000/reviews", {
+      await fetch("https://scholar-stream-server-mu.vercel.app/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -69,7 +69,7 @@ const MyApplications = () => {
   const handlePay = async (app) => {
     try {
       const res = await fetch(
-        "http://localhost:5000/scholarship-payment-session",
+        "https://scholar-stream-server-mu.vercel.app/scholarship-payment-session",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -93,9 +93,12 @@ const MyApplications = () => {
     if (!window.confirm("Are you sure you want to delete this application?"))
       return;
     try {
-      await fetch(`http://localhost:5000/applications/${appId}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://scholar-stream-server-mu.vercel.app/applications/${appId}`,
+        {
+          method: "DELETE",
+        }
+      );
       setApplications(applications.filter((app) => app._id !== appId));
     } catch (err) {
       console.error(err);

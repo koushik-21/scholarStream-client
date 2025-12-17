@@ -15,7 +15,7 @@ const UserProfile = () => {
   //     const updatedData = { name, email, photoURL };
 
   //     try {
-  //       const res = await fetch(`http://localhost:5000/users/${user._id}`, {
+  //       const res = await fetch(`https://scholar-stream-server-mu.vercel.app/users/${user._id}`, {
   //         method: "PUT",
   //         headers: { "Content-Type": "application/json" },
   //         body: JSON.stringify(updatedData),

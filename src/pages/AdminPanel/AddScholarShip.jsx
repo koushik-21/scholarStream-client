@@ -30,13 +30,16 @@ const AddScholarShip = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/allScholarships", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        "https://scholar-stream-server-mu.vercel.app/allScholarships",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
 

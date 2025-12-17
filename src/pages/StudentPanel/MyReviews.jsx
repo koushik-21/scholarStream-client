@@ -17,7 +17,7 @@
 //     const fetchReviews = async () => {
 //       try {
 //         const res = await fetch(
-//           `http://localhost:5000/reviews?userEmail=${user.email}`
+//           `https://scholar-stream-server-mu.vercel.app/reviews?userEmail=${user.email}`
 //         );
 //         const data = await res.json();
 //         setReviews(data);
@@ -35,7 +35,7 @@
 //     if (!window.confirm("Are you sure you want to delete this review?")) return;
 
 //     try {
-//       await fetch(`http://localhost:5000/reviews/${reviewId}`, {
+//       await fetch(`https://scholar-stream-server-mu.vercel.app/reviews/${reviewId}`, {
 //         method: "DELETE",
 //       });
 //       setReviews(reviews.filter((r) => r._id !== reviewId));
@@ -56,7 +56,7 @@
 //   const submitEdit = async () => {
 //     try {
 //       const res = await fetch(
-//         `http://localhost:5000/reviews/${selectedReview._id}`,
+//         `https://scholar-stream-server-mu.vercel.app/reviews/${selectedReview._id}`,
 //         {
 //           method: "PATCH",
 //           headers: { "Content-Type": "application/json" },
@@ -194,7 +194,7 @@ const MyReviews = () => {
     const fetchReviews = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/reviews?userEmail=${user.email}`
+          `https://scholar-stream-server-mu.vercel.app/reviews?userEmail=${user.email}`
         );
         const data = await res.json();
         setReviews(data);
@@ -210,11 +210,14 @@ const MyReviews = () => {
   // Submit updated review
   const handleUpdate = async () => {
     try {
-      await fetch(`http://localhost:5000/reviews/${selectedReview._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ rating, comment }),
-      });
+      await fetch(
+        `https://scholar-stream-server-mu.vercel.app/reviews/${selectedReview._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ rating, comment }),
+        }
+      );
       alert("Review updated successfully");
       setSelectedReview(null);
       setRating(5);
@@ -235,7 +238,9 @@ const MyReviews = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
     try {
-      await fetch(`http://localhost:5000/reviews/${id}`, { method: "DELETE" });
+      await fetch(`https://scholar-stream-server-mu.vercel.app/reviews/${id}`, {
+        method: "DELETE",
+      });
       setReviews(reviews.filter((r) => r._id !== id));
     } catch (err) {
       console.error(err);

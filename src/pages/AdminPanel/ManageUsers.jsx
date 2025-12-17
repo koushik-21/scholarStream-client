@@ -9,8 +9,8 @@ const ManageUsers = () => {
   const fetchUsers = async (role = "") => {
     try {
       const url = role
-        ? `http://localhost:5000/admin/users?role=${role}`
-        : `http://localhost:5000/admin/users`;
+        ? `https://scholar-stream-server-mu.vercel.app/admin/users?role=${role}`
+        : `https://scholar-stream-server-mu.vercel.app/admin/users`;
 
       const res = await fetch(url);
       const data = await res.json();
@@ -37,7 +37,7 @@ const ManageUsers = () => {
     if (!confirm.isConfirmed) return;
 
     const res = await fetch(
-      `http://localhost:5000/admin/users/role/${userId}`,
+      `https://scholar-stream-server-mu.vercel.app/admin/users/role/${userId}`,
       {
         method: "PATCH",
         headers: {
@@ -65,9 +65,12 @@ const ManageUsers = () => {
 
     if (!confirm.isConfirmed) return;
 
-    const res = await fetch(`http://localhost:5000/admin/users/${userId}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `https://scholar-stream-server-mu.vercel.app/admin/users/${userId}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     if (res.ok) {
       Swal.fire("Deleted!", "User has been removed", "success");

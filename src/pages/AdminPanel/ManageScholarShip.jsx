@@ -9,7 +9,9 @@ const ManageScholarShip = () => {
   //  Fetch all scholarships (NO LIMIT)
   const fetchScholarships = async () => {
     try {
-      const res = await fetch("http://localhost:5000/admin/allScholarships");
+      const res = await fetch(
+        "https://scholar-stream-server-mu.vercel.app/admin/allScholarships"
+      );
       if (!res.ok) throw new Error("Failed to fetch scholarships");
       const data = await res.json();
       setScholarships(data);
@@ -36,9 +38,12 @@ const ManageScholarShip = () => {
     });
 
     if (confirm.isConfirmed) {
-      await fetch(`http://localhost:5000/allScholarships/${id}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://scholar-stream-server-mu.vercel.app/allScholarships/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       Swal.fire("Deleted!", "Scholarship has been deleted.", "success");
       fetchScholarships();
@@ -71,7 +76,7 @@ const ManageScholarShip = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/allScholarships/${selectedScholarship._id}`,
+        `https://scholar-stream-server-mu.vercel.app/allScholarships/${selectedScholarship._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
