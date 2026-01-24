@@ -17,6 +17,8 @@ import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentFailed from "../pages/Payment/PaymentFailed";
 import StudentPanel from "../pages/StudentPanel/StudentPanel";
 import ModeratorPanel from "../pages/ModeratorPanel/ModeratorPanel";
+import PrivacyPolicy from "../components/Shared/PrivacyPolicy";
+import Contact from "../components/Shared/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -49,11 +51,20 @@ export const router = createBrowserRouter([
         },
         Component: AllScholarships,
       },
+
+      {
+        path: "/privacy&policy",
+        Component: PrivacyPolicy,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
+      },
       {
         path: "/scholarship/:id",
         loader: async ({ params }) => {
           return fetch(
-            `https://scholar-stream-server-mu.vercel.app/allScholarships/${params.id}`
+            `https://scholar-stream-server-mu.vercel.app/allScholarships/${params.id}`,
           );
         },
         Component: ScholarShipDetails,

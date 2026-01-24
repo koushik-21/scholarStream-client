@@ -7,6 +7,7 @@ import axios from "axios";
 import SocialLogin from "../../components/SocailLogin/SocialLogin";
 import Logo from "../../components/Logo/Logo";
 import Swal from "sweetalert2";
+import { div } from "framer-motion/client";
 const Register = () => {
   const {
     register,
@@ -80,105 +81,111 @@ const Register = () => {
       });
   };
   return (
-    <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 my-2 shadow-2xl">
-      <h3 className="text-2xl text-center py-2 ">
-        Welcome to{" "}
-        <span className="font-semibold">
-          <Logo></Logo>
-        </span>{" "}
-      </h3>
-      <p className="text-center font-semibold text-gray-600">Please Register</p>
-      <form
-        className="card-body my-0 py-0"
-        onSubmit={handleSubmit(handleRegistration)}
-      >
-        <fieldset className="fieldset">
-          {/* name field */}
-          <label className="label">Name</label>
-          <input
-            type="text"
-            {...register("name", { required: true })}
-            className="input"
-            placeholder="Your Name"
-          />
-          {errors.name?.type === "required" && (
-            <p className="text-red-500">Name is required.</p>
-          )}
+    <div className="min-h-[90vh] flex items-center justify-center p-4">
+      <div className="card bg-base-100 w-full max-w-md shadow-2xl border border-base-200 overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-8 text-center text-white">
+          <h3 className="text-3xl font-black tracking-tight mb-2">
+            ScholarStream
+          </h3>
+          <p className="text-blue-50 opacity-90 font-medium">
+            Register to manage your scholarships
+          </p>
+        </div>
+        <form
+          className="card-body my-0 py-0"
+          onSubmit={handleSubmit(handleRegistration)}
+        >
+          <fieldset className="fieldset">
+            {/* name field */}
+            <label className="label">Name</label>
+            <input
+              type="text"
+              {...register("name", { required: true })}
+              className="input"
+              placeholder="Your Name"
+            />
+            {errors.name?.type === "required" && (
+              <p className="text-red-500">Name is required.</p>
+            )}
 
-          {/* photo image field */}
-          <label className="label">Photo</label>
+            {/* photo image field */}
+            <label className="label">Photo</label>
 
-          <input
-            type="file"
-            {...register("photo", { required: true })}
-            className="file-input"
-            placeholder="Your Photo"
-          />
+            <input
+              type="file"
+              {...register("photo", { required: true })}
+              className="file-input"
+              placeholder="Your Photo"
+            />
 
-          {errors.name?.type === "required" && (
-            <p className="text-red-500">Photo is required.</p>
-          )}
+            {errors.name?.type === "required" && (
+              <p className="text-red-500">Photo is required.</p>
+            )}
 
-          {/* email field */}
-          <label className="label">Email</label>
-          <input
-            type="email"
-            {...register("email", { required: true })}
-            className="input"
-            placeholder="Email"
-          />
-          {errors.email?.type === "required" && (
-            <p className="text-red-500">Email is required.</p>
-          )}
+            {/* email field */}
+            <label className="label">Email</label>
+            <input
+              type="email"
+              {...register("email", { required: true })}
+              className="input"
+              placeholder="Email"
+            />
+            {errors.email?.type === "required" && (
+              <p className="text-red-500">Email is required.</p>
+            )}
 
-          {/* password */}
-          <label className="label">Password</label>
-          <input
-            type="password"
-            {...register("password", {
-              required: true,
-              minLength: 6,
-              pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
-            })}
-            className="input"
-            placeholder="Password"
-          />
-          {errors.password?.type === "required" && (
-            <p className="text-red-500 font-semibold italic">
-              Password is required.
-            </p>
-          )}
-          {errors.password?.type === "minLength" && (
-            <p className="text-red-500 font-semibold italic">
-              Password must be 6 characters or longer
-            </p>
-          )}
-          {errors.password?.type === "pattern" && (
-            <p className="text-red-500 font-semibold italic">
-              Password must have at least one uppercase, at least one lowercase,
-              at least one number, and at least one special characters
-            </p>
-          )}
+            {/* password */}
+            <label className="label">Password</label>
+            <input
+              type="password"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
+              })}
+              className="input"
+              placeholder="Password"
+            />
+            {errors.password?.type === "required" && (
+              <p className="text-red-500 font-semibold italic">
+                Password is required.
+              </p>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-500 font-semibold italic">
+                Password must be 6 characters or longer
+              </p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-500 font-semibold italic">
+                Password must have at least one uppercase, at least one
+                lowercase, at least one number, and at least one special
+                characters
+              </p>
+            )}
 
-          <div>
-            <a className="link link-hover">Forgot password?</a>
-          </div>
-          <button className="btn btn-neutral mt-4">Register</button>
-        </fieldset>
-        <p className="font-semibold">
-          Already have an account?{" "}
-          <Link
-            state={location.state}
-            className="text-blue-400 underline"
-            to="/login"
-          >
-            Login
-          </Link>
-        </p>
-      </form>
-      <SocialLogin></SocialLogin>
+            <div>
+              <a className="link link-hover">Forgot password?</a>
+            </div>
+            <button className="btn btn-neutral mt-4">Register</button>
+          </fieldset>
+          <p className="font-semibold">
+            Already have an account?{" "}
+            <Link
+              state={location.state}
+              className="text-blue-400 underline"
+              to="/login"
+            >
+              Login
+            </Link>
+          </p>
+        </form>
+        <SocialLogin></SocialLogin>
+      </div>
     </div>
   );
 };
 
 export default Register;
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>......................>>>>>>>>>>>>>>>>>>>
